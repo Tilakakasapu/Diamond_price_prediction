@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError 
 import yaml
-from DiamondPricePrediction import logger
+from src.DiamondPricePrediction import logger
 import json 
 import joblib
 from ensure import ensure_annotations
