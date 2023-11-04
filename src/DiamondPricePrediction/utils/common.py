@@ -8,6 +8,8 @@ from ensure import ensure_annotations
 from box.config_box import ConfigBox
 from pathlib import Path
 from typing import Any
+import numpy as np
+from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     try:
@@ -51,4 +53,10 @@ def save_json_1(path:Path,data:dict):
     with open(path,"w") as f:
         json.dump(data,f,indent=4)
     logger.info(f"json file saved at: {path}")
+def evaluate_model(true, predicted):
+    mae = mean_absolute_error(true, predicted)
+    mse = mean_squared_error(true, predicted)
+    rmse = np.sqrt(mean_squared_error(true, predicted))
+    r2_square = r2_score(true, predicted)
+    return mae, rmse, r2_square
     
